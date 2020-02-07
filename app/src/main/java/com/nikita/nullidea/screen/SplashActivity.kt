@@ -1,7 +1,8 @@
-package com.nikita.nullidea
+package com.nikita.nullidea.screen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.nikita.nullidea.R
 
 class SplashActivity : AppCompatActivity() {
 
