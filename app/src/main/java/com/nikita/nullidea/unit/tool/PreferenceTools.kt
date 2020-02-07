@@ -1,10 +1,16 @@
-package com.nikita.nullidea.unit
+/*
+ * Copyright (c) 2020.
+ * Nkita Knyazevkiy
+ * UA
+ */
+
+package com.nikita.nullidea.unit.tool
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import com.nikita.nullidea.unit.PreferenceNames.IS_USER_SIGN
+import com.nikita.nullidea.unit.tool.PreferenceNames.IS_USER_SIGN
 
 object PreferenceTools {
 
@@ -15,8 +21,10 @@ object PreferenceTools {
 
     @SuppressLint("CommitPrefEdits")
     fun init(context: Context) {
-        editor = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit()
-        store = context.getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE)
+        editor = context.getSharedPreferences(
+            MY_PREFS_NAME, MODE_PRIVATE).edit()
+        store = context.getSharedPreferences(
+            MY_PREFS_NAME, MODE_PRIVATE)
     }
 
 
