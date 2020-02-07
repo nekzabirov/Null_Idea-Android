@@ -12,7 +12,7 @@ object ApiTools {
 
     private val apiFactory: ApiFactory = ApiFactory()
 
-    private val apiUrl = ""
+    private const val apiUrl = ""
 
     fun <T> api(service: Class<T>): T {
         return apiFactory
