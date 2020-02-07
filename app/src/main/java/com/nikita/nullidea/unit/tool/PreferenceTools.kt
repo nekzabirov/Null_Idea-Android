@@ -10,6 +10,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.nikita.nullidea.unit.tool.PreferenceNames.FIREBASE_TOKEN
 import com.nikita.nullidea.unit.tool.PreferenceNames.IS_USER_SIGN
 
 object PreferenceTools {
@@ -39,11 +40,24 @@ object PreferenceTools {
             ?.apply()
     }
 
+    fun setFirebaseToken(token: String) {
+        editor
+            ?.putString(FIREBASE_TOKEN, token)
+            ?.apply()
+    }
+
+    fun userToken(): String? {
+        return store
+            ?.getString(FIREBASE_TOKEN, null)
+    }
+
 
 }
 
 object PreferenceNames {
 
     const val IS_USER_SIGN = "IS_USER_SIGN"
+
+    const val FIREBASE_TOKEN = "FIREBASE_TOKEN"
 
 }
