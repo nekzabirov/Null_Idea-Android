@@ -8,6 +8,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'com.google.gms.google-services'
 
+apply plugin: 'com.google.firebase.firebase-perf'
+
 
 kapt {
     generateStubs = true
@@ -86,4 +88,6 @@ dependencies {
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.google.firebase:firebase-perf:19.0.5'
+
 }
