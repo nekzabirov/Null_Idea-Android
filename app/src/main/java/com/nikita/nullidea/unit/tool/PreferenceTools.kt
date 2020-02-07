@@ -13,6 +13,7 @@ import android.content.SharedPreferences
 import com.nikita.nullidea.repository.UserRepository
 import com.nikita.nullidea.unit.tool.PreferenceNames.FIREBASE_TOKEN
 import com.nikita.nullidea.unit.tool.PreferenceNames.IS_USER_SIGN
+import com.nikita.nullidea.unit.tool.PreferenceNames.USER_ID
 
 object PreferenceTools {
 
@@ -59,6 +60,16 @@ object PreferenceTools {
             ?.getString(FIREBASE_TOKEN, null)!!
     }
 
+    val userID: String by lazy {
+        store?.getString(USER_ID, "non_user")!!
+    }
+
+    fun getUserId(): String {
+        return if (store?.contains(USER_ID)!!)
+            userID
+        else
+            "non_user"
+    }
 
 }
 
@@ -67,5 +78,7 @@ object PreferenceNames {
     const val IS_USER_SIGN = "IS_USER_SIGN"
 
     const val FIREBASE_TOKEN = "FIREBASE_TOKEN"
+
+    const val USER_ID = "USER_ID"
 
 }
