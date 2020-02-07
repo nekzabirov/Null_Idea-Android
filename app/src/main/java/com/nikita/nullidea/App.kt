@@ -9,6 +9,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         PreferenceTools.init(this)
-        DBTools.init(this)
+        //DBTools.init(this)
     }
 }
