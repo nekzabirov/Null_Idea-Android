@@ -30,7 +30,6 @@ object PreferenceTools {
             MY_PREFS_NAME, MODE_PRIVATE)
     }
 
-
     val isUserSign: Boolean by lazy {
         store
             ?.getBoolean(IS_USER_SIGN, false)!!
