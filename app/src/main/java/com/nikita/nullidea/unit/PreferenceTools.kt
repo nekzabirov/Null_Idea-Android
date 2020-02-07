@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.nikita.nullidea.unit.PreferenceNames.IS_USER_SIGN
 
 object PreferenceTools {
 
@@ -19,6 +20,16 @@ object PreferenceTools {
     }
 
 
+    val isUserSign: Boolean by lazy {
+        store
+            ?.getBoolean(IS_USER_SIGN, false)!!
+    }
+
+    fun setUserSigned() {
+        editor
+            ?.putBoolean(IS_USER_SIGN, true)
+            ?.apply()
+    }
 
 
 }
