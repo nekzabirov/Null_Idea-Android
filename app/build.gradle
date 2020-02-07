@@ -56,6 +56,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$life_data"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$life_data"
     implementation "androidx.lifecycle:lifecycle-extensions:$life_data"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     kapt "androidx.lifecycle:lifecycle-compiler:$life_data"
 
     //Test
@@ -69,4 +73,12 @@ dependencies {
 
     //Paging
     implementation 'android.arch.paging:runtime:1.0.1'
+
+    //Retrofit 2
+    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.0'
+
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }

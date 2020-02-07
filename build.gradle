@@ -15,6 +15,8 @@ buildscript {
         androidx_version_core = "1.2.0"
 
         life_data = "2.2.0"
+
+        nav_version = "2.2.1"
     }
 
     repositories {
