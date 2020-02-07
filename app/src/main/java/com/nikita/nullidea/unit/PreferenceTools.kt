@@ -19,4 +19,12 @@ object PreferenceTools {
     }
 
 
+
+
+}
+
+object PreferenceNames {
+
+    const val IS_USER_SIGN = "IS_USER_SIGN"
+
 }
