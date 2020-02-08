@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.nikita.nullidea.R
 import com.nikita.nullidea.TAG
 import com.nikita.nullidea.unit.Threds
@@ -24,12 +26,14 @@ class SplashActivity : AppCompatActivity() {
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        }
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        toFullScreen()
 
         GlobalScope.async(Dispatchers.Main) {
             withContext(Dispatchers.IO) { delay(2000)}
@@ -44,4 +48,11 @@ class SplashActivity : AppCompatActivity() {
     }
 
 
+}
+
+fun AppCompatActivity.toFullScreen() {
+    this.window.setFlags(
+        WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        WindowManager.LayoutParams.FLAG_FULLSCREEN
+    )
 }
