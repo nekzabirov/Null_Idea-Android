@@ -4,12 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
 import com.nikita.nullidea.R
 import com.nikita.nullidea.TAG
 import com.nikita.nullidea.repository.TokenRepository
-import com.nikita.nullidea.unit.Threds
+import com.nikita.nullidea.unit.Threads
 import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.coroutines.*
 
@@ -36,11 +35,12 @@ class SplashActivity : AppCompatActivity() {
 
         toFullScreen()
 
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(Threads.mainDispatcher) {
             withContext(Dispatchers.IO) { delay(2000)}
 
-            withContext(Threds.ioDispatcher) {
-                TokenRepository().accessToken()
+            withContext(Threads.ioDispatcher) {
+                val accessToken = TokenRepository().accessToken()
+                MyLog.d(this@SplashActivity.TAG, "token loaded. Access token: ${accessToken.accessToken}")
             }
 
             openApp()

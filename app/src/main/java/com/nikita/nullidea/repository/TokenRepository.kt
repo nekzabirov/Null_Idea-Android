@@ -20,7 +20,7 @@ class TokenRepository {
         MyLog.d(TAG, "start load access token")
 
         val tokenModel = AppRest(
-            "https://nullidea.eu.auth0.com/oauth/token",
+            "https://nullidea.eu.auth0.com/oauth/",
             TokenApiService::class.java
         ).api().getToken()
 
