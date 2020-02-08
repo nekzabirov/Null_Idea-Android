@@ -8,6 +8,7 @@ package com.nikita.nullidea.unit.rest
 
 import android.util.Log
 import com.nikita.nullidea.BuildConfig
+import com.nikita.nullidea.unit.tool.PreferenceTools
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,7 +33,12 @@ class ApiFactory {
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
                     .addHeader("Accept", "application/json")
+                    .addHeader("Content-Type", "application/json")
                     .header("platform", "android")
+                    .header("Authorization",
+                        "${PreferenceTools.accessToken().tokenType} " +
+                                PreferenceTools.accessToken().accessToken
+                    )
                     .method(original.method(), original.body())
 
                 val request = requestBuilder
