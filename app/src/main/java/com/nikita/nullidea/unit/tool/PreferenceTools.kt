@@ -12,6 +12,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.nikita.nullidea.api.TokenApiService
 import com.nikita.nullidea.model.TokenModel
+import com.nikita.nullidea.repository.TokenRepository
 import com.nikita.nullidea.repository.UserRepository
 import com.nikita.nullidea.unit.rest.AppRest
 import com.nikita.nullidea.unit.tool.PreferenceNames.ACCESS_TOKEN
@@ -58,7 +59,7 @@ object PreferenceTools {
 
         if (store?.contains(FIREBASE_TOKEN)!!) {
             setFirebaseToken(
-                UserRepository().getFirebaseToken()
+                TokenRepository().getFirebaseToken()
             )
         }
 
