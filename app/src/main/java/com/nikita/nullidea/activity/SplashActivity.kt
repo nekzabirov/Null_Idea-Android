@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
 
         toFullScreen()
 
-        GlobalScope.async(Dispatchers.Main) {
+        GlobalScope.launch(Dispatchers.Main) {
             withContext(Dispatchers.IO) { delay(2000)}
 
             withContext(Threds.ioDispatcher) {
