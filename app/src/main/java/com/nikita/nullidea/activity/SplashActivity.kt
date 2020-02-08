@@ -8,6 +8,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.nikita.nullidea.R
 import com.nikita.nullidea.TAG
+import com.nikita.nullidea.repository.TokenRepository
 import com.nikita.nullidea.unit.Threds
 import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.coroutines.*
@@ -38,13 +39,19 @@ class SplashActivity : AppCompatActivity() {
         GlobalScope.async(Dispatchers.Main) {
             withContext(Dispatchers.IO) { delay(2000)}
 
-            withContext(Dispatchers.Main) {
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-                finish()
+            withContext(Threds.ioDispatcher) {
+                TokenRepository().accessToken()
             }
+
+            openApp()
         }
 
+    }
+
+    private fun openApp() {
+        startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
+        finish()
     }
 
 
