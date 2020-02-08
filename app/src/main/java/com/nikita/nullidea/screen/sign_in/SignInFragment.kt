@@ -49,16 +49,27 @@ class SignInFragment : Fragment() {
     }
 
     private fun setIconStates(txtField: TextInputEditText, txtLayout: TextInputLayout) {
+        val activeColor = ColorStateList.valueOf(this.resources.getColor(R.color.colorPrimary))
+        val disableColor = ColorStateList.valueOf(this.resources.getColor(R.color.friar_gray))
+
         txtField.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus)
+            if (hasFocus) {
                 txtLayout.setStartIconTintList(
-                    ColorStateList.valueOf(this.resources.getColor(R.color.colorPrimary))
+                    activeColor
                 )
-            else
+                txtLayout.setEndIconTintList(
+                    activeColor
+                )
+            } else {
                 txtLayout.setStartIconTintList(
-                    ColorStateList.valueOf(this.resources.getColor(R.color.friar_gray))
+                    disableColor
                 )
+                txtLayout.setEndIconTintList(
+                    disableColor
+                )
+            }
         }
+
     }
 
 }

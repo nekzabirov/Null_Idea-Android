@@ -69,12 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            app:startIconDrawable="@drawable/ic_lock_friar_gray_24dp">
+            app:startIconDrawable="@drawable/ic_lock_friar_gray_24dp"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/friar_gray">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signin_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:textColor="@color/field_state" />
 
         </com.google.android.material.textfield.TextInputLayout>
