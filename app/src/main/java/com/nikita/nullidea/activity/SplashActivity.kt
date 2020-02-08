@@ -54,7 +54,6 @@ class SplashActivity : AppCompatActivity() {
         finish()
     }
 
-
 }
 
 fun AppCompatActivity.toFullScreen() {
