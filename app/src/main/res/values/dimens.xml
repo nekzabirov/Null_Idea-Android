@@ -9,4 +9,8 @@
     <dimen name="title">55sp</dimen>
     <dimen name="btn_height">60dp</dimen>
     <dimen name="medium_btn_height">35dp</dimen>
+    <dimen name="big_border_margin">32dp</dimen>
+    <dimen name="big_field_margin">24dp</dimen>
+    <dimen name="border_margin">16dp</dimen>
+    <dimen name="field_margin">12dp</dimen>
 </resources>
