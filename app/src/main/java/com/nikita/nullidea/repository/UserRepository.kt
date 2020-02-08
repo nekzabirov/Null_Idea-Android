@@ -6,7 +6,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlin.coroutines.suspendCoroutine
 
-class UserRepository {
+class UserRepository: BaseRepository() {
 
     suspend fun getFirebaseToken(): String = suspendCoroutine { continuation ->
         FirebaseInstanceId.getInstance()
