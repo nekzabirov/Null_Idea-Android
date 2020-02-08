@@ -10,4 +10,6 @@ data class BaseResponseModel <T> (
     val status: String,
     val error: String,
     val data: T
-)
+) {
+    val isSuccess: Boolean = status == "OK"
+}
