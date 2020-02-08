@@ -70,30 +70,7 @@ object PreferenceTools {
         store?.getString(USER_ID, "non_user")!!
     }
 
-    suspend fun accessToken(): TokenModel {
-
-        if (
-            !store?.contains(ACCESS_TOKEN)!!
-            || !store?.contains(ACCESS_TOKEN_DATE)!!
-            || !store?.contains(EXPIRES_IN)!!
-            || !store?.contains(TOKEN_TYPE)!!
-                ) {
-
-            val tokenModel = AppRest(
-                "https://nullidea.eu.auth0.com/oauth/token",
-                TokenApiService::class.java
-            ).api().getToken()
-
-            setAccessToken(tokenModel.accessToken)
-
-            setAccessTokenDate(System.currentTimeMillis())
-
-            setExpiresIn(tokenModel.expiresIn)
-
-            setTokenType(tokenModel.tokenType)
-
-        }
-
+    fun accessToken(): TokenModel {
         return TokenModel(
             store?.getString(ACCESS_TOKEN, "")!!,
             store?.getLong(EXPIRES_IN, 0)!!,
@@ -101,19 +78,19 @@ object PreferenceTools {
         )
     }
 
-    private fun setAccessToken(token: String) {
+    fun setAccessToken(token: String) {
         editor?.putString(ACCESS_TOKEN, token)?.apply()
     }
 
-    private fun setAccessTokenDate(date: Long) {
+    fun setAccessTokenDate(date: Long) {
         editor?.putLong(ACCESS_TOKEN_DATE, date)?.apply()
     }
 
-    private fun setExpiresIn(expires: Long) {
+    fun setExpiresIn(expires: Long) {
         editor?.putLong(EXPIRES_IN, expires)?.apply()
     }
 
-    private fun setTokenType(tokenType: String) {
+    fun setTokenType(tokenType: String) {
         editor?.putString(TOKEN_TYPE, tokenType)?.apply()
     }
 
