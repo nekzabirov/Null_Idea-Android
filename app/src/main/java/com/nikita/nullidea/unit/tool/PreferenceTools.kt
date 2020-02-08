@@ -63,13 +63,6 @@ object PreferenceTools {
         store?.getString(USER_ID, "non_user")!!
     }
 
-    fun getUserId(): String {
-        return if (store?.contains(USER_ID)!!)
-            userID
-        else
-            "non_user"
-    }
-
 }
 
 object PreferenceNames {

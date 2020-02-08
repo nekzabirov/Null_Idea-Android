@@ -28,7 +28,7 @@ object MyLog {
 
     private val firebaseAnalytics: FirebaseAnalytics by lazy {
         FirebaseAnalytics.getInstance(context).apply {
-            setUserId(PreferenceTools.getUserId())
+            setUserId(PreferenceTools.userID)
         }
     }
 
