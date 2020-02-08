@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#FFCB32</color>
     <color name="colorPrimaryDark">#CEA128</color>
     <color name="colorAccent">#000000</color>
 
     <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="friar_gray">#848483</color>
+    <color name="friar_gray_bg_field">#4D848483</color>
+    <color name="silver">#c8c8c8</color>
+
 </resources>

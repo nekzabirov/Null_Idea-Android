@@ -15,6 +15,6 @@ object Threds {
 
     }
 
-    private val ioDispatcher = Dispatchers.IO + errorHandler
+    val ioDispatcher = Dispatchers.IO + errorHandler
 
 }

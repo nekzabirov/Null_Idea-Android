@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.
+  ~ Nkita Knyazevkiy
+  ~ UA
+  -->
+
+<resources>
+    <dimen name="title">55sp</dimen>
+    <dimen name="btn_height">60dp</dimen>
+    <dimen name="medium_btn_height">35dp</dimen>
+</resources>

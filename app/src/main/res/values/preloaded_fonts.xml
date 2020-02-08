@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.
+  ~ Nkita Knyazevkiy
+  ~ UA
+  -->
+
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/ubuntu_medium</item>
+    </array>
+</resources>
