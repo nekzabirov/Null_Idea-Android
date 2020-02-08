@@ -5,10 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.nikita.nullidea.R
+import com.nikita.nullidea.TAG
 import com.nikita.nullidea.unit.Threds
+import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.coroutines.*
 
 class SplashActivity : AppCompatActivity() {
+
+    override fun onStart() {
+        super.onStart()
+        MyLog.d(TAG, "onStart")
+    }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)

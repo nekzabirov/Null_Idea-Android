@@ -11,9 +11,16 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 import com.nikita.nullidea.R
+import com.nikita.nullidea.TAG
+import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.android.synthetic.main.sign_in_fragment.*
 
 class SignInFragment : Fragment() {
+
+    override fun onStart() {
+        super.onStart()
+        MyLog.d(TAG, "onStart")
+    }
 
     companion object {
         fun newInstance() = SignInFragment()
