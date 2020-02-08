@@ -37,9 +37,10 @@
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TitleTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text="@string/app_name"
+            android:textAlignment="center" />
 
         <View
             style="@style/DividerStyle"
@@ -49,8 +50,8 @@
             android:id="@+id/signin_email_txtinputlayout"
             style="@style/ProfileField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/big_field_margin"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="@dimen/middle_field_margin"
             android:hint="@string/email"
             app:startIconDrawable="@drawable/ic_person_friar_gray_24dp">
 
@@ -67,11 +68,12 @@
             android:id="@+id/signin_password_txtinputlayout"
             style="@style/ProfileField"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/btn_height"
+            android:layout_marginTop="@dimen/middle_field_margin"
             android:hint="@string/password"
-            app:startIconDrawable="@drawable/ic_lock_friar_gray_24dp"
             app:endIconMode="password_toggle"
-            app:endIconTint="@color/friar_gray">
+            app:endIconTint="@color/friar_gray"
+            app:startIconDrawable="@drawable/ic_lock_friar_gray_24dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/signin_password"
@@ -87,6 +89,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
             android:layout_marginStart="@dimen/border_margin"
+            android:layout_marginTop="@dimen/middle_field_margin"
             android:layout_marginEnd="@dimen/border_margin"
             android:backgroundTint="@color/colorPrimary"
             android:elevation="12dp"
@@ -106,7 +109,7 @@
         <View
             style="@style/DividerStyle"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/big_field_margin" />
+            android:layout_marginTop="@dimen/middle_field_margin" />
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MaterialComponents.Button"
@@ -165,7 +168,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/big_field_margin"
+            android:layout_marginTop="@dimen/middle_field_margin"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -178,8 +181,8 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginStart="@dimen/big_border_margin"
-                android:layout_marginEnd="@dimen/big_border_margin"
+                android:layout_marginStart="@dimen/middle_border_margin"
+                android:layout_marginEnd="@dimen/middle_border_margin"
                 android:contentDescription="@string/log_in_via_google"
                 android:src="@drawable/ic_ripple_google" />
 

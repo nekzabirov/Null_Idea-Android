@@ -28,6 +28,7 @@
         <item name="android:textSize">@dimen/title</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:fontFamily">@font/pacifico</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
     <style name="DividerStyle">
