@@ -91,15 +91,13 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/MyBtn"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/medium_btn_height"
             android:layout_gravity="end"
             android:backgroundTint="@android:color/transparent"
-            android:elevation="0dp"
             android:enabled="true"
             android:fontFamily="@font/ubuntu_light"
-            android:gravity="center"
             android:insetRight="-15dp"
             android:shadowDy="0"
             android:text="@string/forgot_password"
@@ -107,37 +105,13 @@
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:cornerRadius="5dp"
-            app:elevation="12dp"
+            app:elevation="0dp"
             app:rippleColor="@color/colorPrimaryDark" />
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MaterialComponents.Button"
+        <com.nikita.nullidea.ui.MyBtnProgress
+            android:id="@+id/signin_login_btn"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_height"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:elevation="12dp"
-            android:enabled="false"
-            android:fontFamily="@font/ubuntu_medium"
-            android:gravity="center"
-            android:hapticFeedbackEnabled="true"
-            android:linksClickable="false"
-            android:longClickable="false"
-            android:nestedScrollingEnabled="true"
-            android:saveEnabled="true"
-            android:shadowColor="@color/colorPrimary"
-            android:shadowDy="8"
-            android:soundEffectsEnabled="true"
-            android:text="@string/log_in"
-            android:textAllCaps="true"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:backgroundTint="@color/btn_state"
-            app:cornerRadius="5dp"
-            app:elevation="12dp"
-            app:rippleColor="@color/colorPrimaryDark" />
+            android:layout_height="wrap_content"/>
 
         <View
             style="@style/DividerStyle"
@@ -160,21 +134,18 @@
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button"
+                style="@style/MyBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/medium_btn_height"
                 android:backgroundTint="@android:color/transparent"
                 android:elevation="0dp"
                 android:enabled="true"
-                android:fontFamily="@font/ubuntu_medium"
                 android:gravity="center"
                 android:insetLeft="-10dp"
                 android:insetTop="4dp"
                 android:text="@string/sign_up"
-                android:textAllCaps="true"
                 android:textColor="@color/colorPrimary"
-                android:textSize="14sp"
-                app:rippleColor="@color/colorPrimaryDark" />
+                android:textSize="14sp"/>
         </LinearLayout>
 
         <View

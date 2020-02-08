@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.
+  ~ Nkita Knyazevkiy
+  ~ UA
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mybtnprogress_btn"
+        style="@style/MyBtn"
+        android:layout_width="match_parent"
+        android:enabled="false"
+        android:hapticFeedbackEnabled="true"
+        android:linksClickable="false"
+        android:longClickable="false"
+        android:text="@string/log_in" />
+
+    <ProgressBar
+        android:alpha="0.0"
+        tools:alpha="1.0"
+        android:id="@+id/mybtnprogress_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+</FrameLayout>

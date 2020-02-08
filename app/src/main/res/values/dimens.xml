@@ -18,4 +18,5 @@
     <dimen name="big_field_margin">24dp</dimen>
     <dimen name="middle_field_margin">12dp</dimen>
     <dimen name="field_margin">8dp</dimen>
+    <dimen name="btn_txt">16sp</dimen>
 </resources>

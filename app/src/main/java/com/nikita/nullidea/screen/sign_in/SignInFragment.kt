@@ -40,6 +40,14 @@ class SignInFragment : Fragment() {
 
         setIconStates(signin_email, signin_email_txtinputlayout)
         setIconStates(signin_password, signin_password_txtinputlayout)
+
+        signin_login_btn.isEnabled = true
+        signin_login_btn.setOnClickListener {
+            signin_login_btn.openProgress()
+            signin_login_btn.setOnClickListener {
+                signin_login_btn.closeProgress()
+            }
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

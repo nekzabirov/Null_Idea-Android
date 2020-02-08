@@ -49,4 +49,25 @@
         <item name="startIconTintMode">src_in</item>
     </style>
 
+    <style name="MyBtn" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_height">@dimen/btn_height</item>
+        <item name="android:checkable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="elevation">12dp</item>
+        <item name="android:fontFamily">@font/ubuntu_medium</item>
+        <item name="android:gravity">center</item>
+        <item name="android:nestedScrollingEnabled">true</item>
+        <item name="android:saveEnabled">true</item>
+        <item name="android:shadowColor">@color/colorPrimary</item>
+        <item name="android:shadowDy">8</item>
+        <item name="android:soundEffectsEnabled">true</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/btn_txt</item>
+        <item name="backgroundTint">@color/btn_state</item>
+        <item name="cornerRadius">5dp</item>
+        <item name="rippleColor">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>
