@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#CEA128</color>
     <color name="colorAccent">#000000</color>
 
+    <color name="colorPrimaryHalf">#80FFCB32</color>
+
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="friar_gray">#848483</color>

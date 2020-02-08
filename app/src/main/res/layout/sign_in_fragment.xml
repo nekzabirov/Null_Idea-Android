@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.sign_in.SignInFragment">
+    tools:context=".screen.sign_in.SignInFragment"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <ImageView
         android:layout_width="82dp"
@@ -62,7 +64,7 @@
                 android:id="@+id/signin_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:autoText="false"
+                android:inputType="textEmailAddress"
                 android:gravity="center_vertical"
                 android:textColor="@color/field_state" />
 
@@ -104,6 +106,7 @@
             android:textAllCaps="false"
             android:textColor="@color/colorPrimary"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:cornerRadius="5dp"
             app:elevation="12dp"
             app:rippleColor="@color/colorPrimaryDark" />
@@ -112,19 +115,26 @@
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="@dimen/btn_height"
-            android:layout_marginStart="@dimen/border_margin"
-            android:layout_marginEnd="@dimen/border_margin"
-            android:backgroundTint="@color/colorPrimary"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
             android:elevation="12dp"
-            android:enabled="true"
+            android:enabled="false"
             android:fontFamily="@font/ubuntu_medium"
             android:gravity="center"
+            android:hapticFeedbackEnabled="true"
+            android:linksClickable="false"
+            android:longClickable="false"
+            android:nestedScrollingEnabled="true"
+            android:saveEnabled="true"
             android:shadowColor="@color/colorPrimary"
             android:shadowDy="8"
+            android:soundEffectsEnabled="true"
             android:text="@string/log_in"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:backgroundTint="@color/btn_state"
             app:cornerRadius="5dp"
             app:elevation="12dp"
             app:rippleColor="@color/colorPrimaryDark" />
