@@ -11,4 +11,6 @@
     <string name="log_in_via_google">log in via google</string>
     <string name="log_in_via_github">log in via github</string>
     <string name="debug">debug</string>
+    <string name="wrong_password">Wrong  password</string>
+    <string name="lost_connection">lost connection</string>
 </resources>

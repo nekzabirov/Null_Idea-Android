@@ -26,7 +26,7 @@ class SignInViewModel : ViewModel() {
 
     private val userEntityLive = MutableLiveData<UserEntity?>()
 
-    fun signIn(email: String, password: String): LiveData<UserEntity?> {
+    fun signIn(email: String, password: String) {
 
         GlobalScope.launch(Threads.ioDispatcher + errorHandler) {
 
@@ -40,7 +40,6 @@ class SignInViewModel : ViewModel() {
 
         }
 
-        return userEntityLive
     }
 
 }
