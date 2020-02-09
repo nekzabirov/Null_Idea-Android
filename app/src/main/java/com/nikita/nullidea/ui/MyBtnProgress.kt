@@ -11,6 +11,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ProgressBar
+import androidx.annotation.StringRes
 import com.google.android.material.button.MaterialButton
 import com.nikita.nullidea.R
 
@@ -71,6 +72,14 @@ class MyBtnProgress @JvmOverloads constructor(
             .scaleX(1f)
             .alpha(1f)
             .start()
+    }
+
+    fun setText(text: String) {
+        btn.text = text
+    }
+
+    fun setText(@StringRes txt: Int) {
+        btn.setText(txt)
     }
 
 }

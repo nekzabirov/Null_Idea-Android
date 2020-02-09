@@ -10,6 +10,7 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.perf.FirebasePerformance
 import com.nikita.nullidea.unit.tool.EventKeys.ERROR
 import com.nikita.nullidea.unit.tool.EventKeys.MSG
@@ -44,6 +45,8 @@ object MyLog {
             Log.e(tag, msg)
 
         event(tag, msg, error)
+
+        FirebaseCrashlytics.getInstance().log("$msg ${error?.localizedMessage}")
     }
 
     private fun event(tag: String, mgs: String) {

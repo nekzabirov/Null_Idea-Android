@@ -5,6 +5,7 @@ import com.nikita.nullidea.api.UserRequestModel
 import com.nikita.nullidea.db.UserEntity
 import com.nikita.nullidea.model.BaseResponseModel
 import com.nikita.nullidea.unit.rest.AppRest
+import com.nikita.nullidea.unit.tool.PreferenceTools
 
 class UserRepository: BaseRepository() {
 
@@ -17,7 +18,23 @@ class UserRepository: BaseRepository() {
             UserRequestModel(email, password)
         )
 
-        //TODO(Save user in db)
+        if (responseModel.isSuccess && responseModel.data != null) {
+            PreferenceTools.setUserSigned()
+            //TODO(Save user in db)
+        }
+
+        return responseModel
+    }
+
+    suspend fun signUp(email: String, password: String): BaseResponseModel<UserEntity> {
+        val responseModel = userService.signUp(
+            UserRequestModel(email, password)
+        )
+
+        if (responseModel.isSuccess && responseModel.data != null) {
+            PreferenceTools.setUserSigned()
+            //TODO(Save user in db)
+        }
 
         return responseModel
     }

@@ -13,4 +13,7 @@
     <string name="debug">debug</string>
     <string name="wrong_password">Wrong  password</string>
     <string name="lost_connection">lost connection</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="sign_in">sign in</string>
+    <string name="user_exis">User exis</string>
 </resources>

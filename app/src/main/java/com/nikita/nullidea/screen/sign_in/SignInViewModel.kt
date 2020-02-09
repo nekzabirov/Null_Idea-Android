@@ -5,24 +5,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nikita.nullidea.db.UserEntity
 import com.nikita.nullidea.repository.UserRepository
+import com.nikita.nullidea.unit.MyViewModel
 import com.nikita.nullidea.unit.OnError
 import com.nikita.nullidea.unit.Threads
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class SignInViewModel : ViewModel() {
-
-    private val errorHandler = Threads.getErrorHandler(object : OnError {
-        override fun onInternet() {
-            internetErrorLiveData.postValue(null)
-        }
-    })
+class SignInViewModel : MyViewModel() {
 
     private val userRepository = UserRepository()
 
     val successLogin = MutableLiveData<Boolean?>()
-
-    val internetErrorLiveData = MutableLiveData<Any>()
 
     private val userEntityLive = MutableLiveData<UserEntity?>()
 
