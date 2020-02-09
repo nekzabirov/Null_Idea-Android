@@ -59,20 +59,17 @@ class SignInFragment : MyFragment() {
         }
 
         val emailTxtObs = RxTextView.textChanges(signin_email)
-            .map {
-                return@map !it.isNullOrEmpty()
-                        && android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches()
-            }
-
         val passwordTxtObs = RxTextView.textChanges(signin_password)
-            .map {
-                return@map it.length >= 8
-            }
 
         Observable.merge(
             emailTxtObs,
             passwordTxtObs
         )
+            .map {
+                return@map (!it.isNullOrEmpty()
+                        && android.util.Patterns.EMAIL_ADDRESS.matcher(signin_email.text.toString()).matches())
+                        && (!signin_password.text.isNullOrEmpty() && signin_password.text?.length!! >= 8)
+            }
             .subscribe {
                 signin_login_btn.isEnabled = it
             }
