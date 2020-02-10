@@ -6,10 +6,11 @@
 
 package com.nikita.nullidea.model
 
+import com.google.gson.annotations.SerializedName
+
 data class BaseResponseModel <T> (
-    val status: String,
+    @SerializedName("status")
+    val isSuccess: Boolean,
     val error: String,
     val data: T
-) {
-    val isSuccess: Boolean = status == "OK"
-}
+)
