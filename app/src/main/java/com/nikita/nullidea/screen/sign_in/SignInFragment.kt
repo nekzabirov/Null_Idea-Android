@@ -6,15 +6,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.jakewharton.rxbinding.widget.RxTextView
 import com.nikita.nullidea.R
 import com.nikita.nullidea.TAG
+import com.nikita.nullidea.screen.base_login.BaseLoginFragment
 import com.nikita.nullidea.unit.MyFragment
 import com.nikita.nullidea.unit.setIconStates
 import com.nikita.nullidea.unit.tool.MyLog
@@ -22,42 +25,9 @@ import com.nikita.nullidea.unit.tool.PreferenceTools
 import kotlinx.android.synthetic.main.sign_in_fragment.*
 import rx.Observable
 
-class SignInFragment : MyFragment() {
-
-    private val gso by lazy {
-        GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-    }
-
-    private val googleSignInClient by lazy {
-        GoogleSignIn.getClient(this.activity!!, gso)
-    }
-
-    private val SIGN_IN_GOOGLE = 22
-    private val SIGN_IN_FACEBOOK = 23
-    private val SIGN_IN_GITHUB = 24
+class SignInFragment : BaseLoginFragment() {
 
     private lateinit var viewModel: SignInViewModel
-
-    private fun initFieldsListener() {
-        val emailTxtObs = RxTextView.textChanges(signin_email)
-        val passwordTxtObs = RxTextView.textChanges(signin_password)
-
-        Observable.merge(
-            emailTxtObs,
-            passwordTxtObs
-        )
-            .map {
-                return@map (!it.isNullOrEmpty()
-                        && android.util.Patterns.EMAIL_ADDRESS.matcher(signin_email.text.toString()).matches())
-                        && (!signin_password.text.isNullOrEmpty() && signin_password.text?.length!! >= 8)
-            }
-            .subscribe {
-                signin_login_btn.isEnabled = it
-            }
-    }
 
     private val loginStateObs = Observer<Boolean?> {
         if (it == null)
@@ -66,6 +36,7 @@ class SignInFragment : MyFragment() {
         signin_login_btn.closeProgress()
 
         if (it) {
+            Toast.makeText(this.context, "Success sign in/up", Toast.LENGTH_LONG).show()
             MyLog.d(TAG, "on success login")
             PreferenceTools.setUserSigned()
         } else {
@@ -87,9 +58,6 @@ class SignInFragment : MyFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setIconStates(signin_email, signin_email_txtinputlayout)
-        setIconStates(signin_password, signin_password_txtinputlayout)
-
         signin_login_btn.setOnClickListener {
 
             signin_login_btn.openProgress()
@@ -105,18 +73,10 @@ class SignInFragment : MyFragment() {
             Navigation.findNavController(it).navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
-        signin_google_sign.setOnClickListener {
+    }
 
-            MyLog.d(TAG, "start sign in via google")
-
-            signin_login_btn.openProgress()
-
-            val signInIntent = googleSignInClient.signInIntent
-            startActivityForResult(signInIntent, SIGN_IN_GOOGLE)
-        }
-
-        initFieldsListener()
-
+    override fun onSocialLogined(account: GoogleSignInAccount) {
+        viewModel.firebaseAuthWithGoogle(account, activity!!)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -128,20 +88,6 @@ class SignInFragment : MyFragment() {
         viewModel.internetErrorLiveData.observe(this.viewLifecycleOwner, internetError)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == SIGN_IN_GOOGLE) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            val account = task.getResult(ApiException::class.java)
-            if (account == null) {
-                onInternetError()
-                return
-            }
-            viewModel.firebaseAuthWithGoogle(account, this.activity!!)
-        }
-    }
-
     override fun onInternetError() {
         super.onInternetError()
         signin_login_btn.closeProgress()
@@ -151,7 +97,5 @@ class SignInFragment : MyFragment() {
         super.onStart()
         MyLog.d(TAG, "onStart")
     }
-
-
 
 }

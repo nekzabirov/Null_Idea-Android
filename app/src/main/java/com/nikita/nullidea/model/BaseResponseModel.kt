@@ -9,7 +9,7 @@ package com.nikita.nullidea.model
 import com.google.gson.annotations.SerializedName
 
 data class BaseResponseModel <T> (
-    @SerializedName("status")
+    @SerializedName("success")
     val isSuccess: Boolean,
     val error: String,
     val data: T

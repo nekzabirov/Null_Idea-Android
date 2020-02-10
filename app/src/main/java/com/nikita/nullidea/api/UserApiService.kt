@@ -6,6 +6,7 @@
 
 package com.nikita.nullidea.api
 
+import com.google.gson.annotations.SerializedName
 import com.nikita.nullidea.db.UserEntity
 import com.nikita.nullidea.model.BaseResponseModel
 import retrofit2.http.Body
@@ -22,6 +23,10 @@ interface UserApiService {
 }
 
 data class UserRequestModel(
-    val email: String,
-    val password: String
+    val email: String? = null,
+    val password: String? = null,
+    @SerializedName("auth_firebase_token")
+    val authFirebaseToken: String? = null,
+    @SerializedName("push_firebase_token")
+    val pushFirebaseToken: String? = null
 )

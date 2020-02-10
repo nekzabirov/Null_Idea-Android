@@ -71,14 +71,20 @@ fun Fragment.setIconStates(txtField: TextInputEditText,
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 txtLayout.error = null
+
+                val color = when (txtField.isFocused) {
+                    true -> activeColor
+                    false -> disableColor
+                }
+
                 txtField.setTextColor(
-                    activeColor
+                    color
                 )
                 txtLayout.setStartIconTintList(
-                    activeColor
+                    color
                 )
                 txtLayout.setEndIconTintList(
-                    activeColor
+                    color
                 )
             }
 

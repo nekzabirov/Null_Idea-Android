@@ -7,17 +7,19 @@
 package com.nikita.nullidea.screen.sign_up
 
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.auth.FirebaseUser
+import com.nikita.nullidea.TAG
 import com.nikita.nullidea.repository.UserRepository
+import com.nikita.nullidea.screen.base_login.LoginViewModel
 import com.nikita.nullidea.unit.MyViewModel
 import com.nikita.nullidea.unit.Threads
+import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class SignUpViewModel : MyViewModel() {
+class SignUpViewModel : LoginViewModel() {
 
-    private val userRepository = UserRepository()
-
-    val successLiveData = MutableLiveData<Boolean?>()
+    val successLiveData = successLogin
 
     fun signUp(email: String, password: String) {
         GlobalScope.launch(Threads.ioDispatcher + errorHandler) {

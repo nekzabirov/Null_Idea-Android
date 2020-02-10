@@ -47,6 +47,7 @@
         <item name="errorEnabled">true</item>
         <item name="startIconTint">@color/field_state</item>
         <item name="startIconTintMode">src_in</item>
+        <item name="errorTextColor">@color/error_prime</item>
     </style>
 
     <style name="MyBtn" parent="Widget.MaterialComponents.Button">
