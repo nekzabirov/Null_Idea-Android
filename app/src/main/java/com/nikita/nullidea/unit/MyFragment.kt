@@ -17,6 +17,10 @@ import com.nikita.nullidea.R
 abstract class MyFragment : Fragment() {
 
     open val internetError = Observer<Any> {
+        onInternetError()
+    }
+
+    open fun onInternetError() {
         Snackbar.make(this.view!!, R.string.lost_connection, Snackbar.LENGTH_SHORT).show()
     }
 

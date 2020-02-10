@@ -170,6 +170,7 @@
                 android:src="@drawable/ic_ripple_fb" />
 
             <ImageView
+                android:id="@+id/signin_google_sign"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="@dimen/middle_border_margin"
