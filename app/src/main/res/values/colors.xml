@@ -13,4 +13,6 @@
     <color name="friar_gray_bg_field">#4D848483</color>
     <color name="silver">#c8c8c8</color>
 
+    <color name="error_prime">#FF3802</color>
+
 </resources>

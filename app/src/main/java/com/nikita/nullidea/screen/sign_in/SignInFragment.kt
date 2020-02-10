@@ -1,6 +1,7 @@
 package com.nikita.nullidea.screen.sign_in
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -68,6 +69,12 @@ class SignInFragment : MyFragment() {
             MyLog.d(TAG, "on success login")
             PreferenceTools.setUserSigned()
         } else {
+            signin_password_txtinputlayout.setStartIconTintList(
+                ColorStateList.valueOf(context!!.resources!!.getColor(R.color.error_prime))
+            )
+            signin_password.setTextColor(
+                ColorStateList.valueOf(context!!.resources!!.getColor(R.color.error_prime))
+            )
             signin_password_txtinputlayout.error = getString(R.string.wrong_password)
             MyLog.d(TAG, "on error login")
         }
