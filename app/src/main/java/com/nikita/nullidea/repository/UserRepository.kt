@@ -44,7 +44,10 @@ class UserRepository: BaseRepository() {
 
     suspend fun signInFirebase(uuid: String): BaseResponseModel<UserEntity> {
         val responseModel = userService.signIn(
-            UserRequestModel(authFirebaseToken = uuid)
+            UserRequestModel(
+                authFirebaseToken = uuid,
+                pushFirebaseToken = PreferenceTools.tokenFirebase()
+            )
         )
 
         if (responseModel.isSuccess && responseModel.data != null) {
@@ -57,7 +60,9 @@ class UserRepository: BaseRepository() {
 
     suspend fun signUpFirebase(uuid: String, email: String): BaseResponseModel<UserEntity> {
         val responseModel = userService.signUp(
-            UserRequestModel(email = email, authFirebaseToken = uuid)
+            UserRequestModel(
+                email = email,
+                authFirebaseToken = uuid)
         )
 
         if (responseModel.isSuccess && responseModel.data != null) {
