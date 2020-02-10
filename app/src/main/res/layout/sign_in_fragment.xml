@@ -16,6 +16,7 @@
         android:contentDescription="@string/lamp"
         android:scaleType="fitStart"
         android:src="@drawable/img_lamp_top_right"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,8 +32,8 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/big_border_margin"
-        android:layout_marginEnd="@dimen/big_border_margin"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
@@ -48,10 +49,6 @@
             android:text="@string/app_name"
             android:textAlignment="center" />
 
-        <View
-            style="@style/DividerStyle"
-            android:layout_width="match_parent" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/signin_email_txtinputlayout"
             style="@style/ProfileField"
@@ -65,8 +62,8 @@
                 android:id="@+id/signin_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:gravity="center_vertical"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/field_state" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +110,7 @@
         <com.nikita.nullidea.ui.MyBtnProgress
             android:id="@+id/signin_login_btn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <View
             style="@style/DividerStyle"
@@ -134,7 +131,7 @@
                 android:fontFamily="@font/ubuntu_light"
                 android:text="@string/dont_have_account"
                 android:textColor="@color/silver"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signin_signup_btn"
@@ -145,46 +142,54 @@
                 android:elevation="0dp"
                 android:enabled="true"
                 android:gravity="center"
-                android:insetLeft="-10dp"
+                android:insetLeft="-8dp"
                 android:insetTop="4dp"
                 android:text="@string/sign_up"
                 android:textColor="@color/colorPrimary"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
-        <View
-            style="@style/DividerStyle"
-            android:layout_width="match_parent"
-            android:visibility="invisible" />
-
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/middle_field_margin"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:contentDescription="@string/log_in_via_facebook"
-                android:src="@drawable/ic_ripple_fb" />
+            <View
+                style="@style/DividerStyle"
+                android:layout_width="match_parent"
+                android:alpha="1"
+                android:background="@color/colorPrimary"
+                android:visibility="invisible" />
 
-            <ImageView
-                android:id="@+id/signin_google_sign"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="@dimen/middle_border_margin"
-                android:layout_marginEnd="@dimen/middle_border_margin"
-                android:contentDescription="@string/log_in_via_google"
-                android:src="@drawable/ic_ripple_google" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:contentDescription="@string/log_in_via_github"
-                android:src="@drawable/ic_ripple_github" />
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:contentDescription="@string/log_in_via_facebook"
+                    android:src="@drawable/ic_ripple_fb" />
 
+                <ImageView
+                    android:id="@+id/signin_google_sign"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="@dimen/big_border_margin"
+                    android:layout_marginEnd="@dimen/big_border_margin"
+                    android:contentDescription="@string/log_in_via_google"
+                    android:src="@drawable/ic_ripple_google" />
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:contentDescription="@string/log_in_via_github"
+                    android:src="@drawable/ic_ripple_github" />
+
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
