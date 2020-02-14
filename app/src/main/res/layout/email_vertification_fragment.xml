@@ -88,6 +88,7 @@
             android:text="@string/Didnt_receive_any_code" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/emailverti_resend_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
@@ -99,11 +100,12 @@
     </LinearLayout>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/emailverti_resend_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/_120"
         android:textColor="@color/full_gray"
         android:textSize="@dimen/middle_text"
-        app:fontFamily="@font/ubuntu_medium"
-        tools:text="120" />
+        app:fontFamily="@font/ubuntu_medium" />
 
 </LinearLayout>
