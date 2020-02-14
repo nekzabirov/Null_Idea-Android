@@ -2,6 +2,7 @@ package com.nikita.nullidea.repository
 
 import com.nikita.nullidea.api.UserApiService
 import com.nikita.nullidea.api.UserRequestModel
+import com.nikita.nullidea.api.UserVrtRequest
 import com.nikita.nullidea.db.UserEntity
 import com.nikita.nullidea.model.BaseResponseModel
 import com.nikita.nullidea.unit.rest.AppRest
@@ -72,6 +73,14 @@ class UserRepository: BaseRepository() {
         }
 
         return responseModel
+    }
+
+    suspend fun sendVerifyEmail(email: String): BaseResponseModel<*> {
+        return userService.verifyEmail(UserVrtRequest(email = email))
+    }
+
+    suspend fun checkVerifyEmail(email: String, code: String): BaseResponseModel<*> {
+        return userService.verifyEmail(UserVrtRequest(email, code))
     }
 
 }
