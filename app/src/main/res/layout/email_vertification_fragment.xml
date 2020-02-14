@@ -11,6 +11,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
+    android:fitsSystemWindows="true"
     tools:context=".screen.email_vertification.EmailVerificationFragment">
 
     <LinearLayout
@@ -84,13 +85,13 @@
             android:gravity="center_horizontal"
             android:textColor="@color/full_gray"
             android:textSize="12sp"
-            tools:text="@string/Didnt_receive_any_code" />
+            android:text="@string/Didnt_receive_any_code" />
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/transparent"
-            android:insetLeft="-25dp"
+            android:insetLeft="5dp"
             android:text="@string/resend"
             android:textColor="@color/full_gray" />
 
