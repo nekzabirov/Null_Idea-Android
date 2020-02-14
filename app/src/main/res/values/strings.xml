@@ -3,6 +3,9 @@
     <string name="facebook_app_id" translatable="false">210389653423389</string>
     <string name="fb_login_protocol_scheme" translatable="false">fb210389653423389</string>
 
+    <!-- KEY HELPER -->
+    <string name="user_email_key" translatable="false">USER_EMAIL</string>
+
 
     <string name="app_name">Nullidea</string>
     <string name="email">Email</string>

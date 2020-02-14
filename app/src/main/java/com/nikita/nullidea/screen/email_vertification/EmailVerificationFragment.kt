@@ -16,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 
 import com.nikita.nullidea.R
 import com.nikita.nullidea.unit.BestTimer
-import com.nikita.nullidea.unit.KeyHelper
 import com.nikita.nullidea.unit.MyFragment
 import kotlinx.android.synthetic.main.email_vertification_fragment.*
 
@@ -25,7 +24,7 @@ class EmailVerificationFragment : MyFragment() {
     private lateinit var viewModel: EmailVerificationViewModel
 
     private val userEmail: String by lazy {
-        arguments?.getString(KeyHelper.userEmail, null)!!
+        arguments?.getString(getString(R.string.user_email_key), null)!!
     }
 
     private val resendTime = 120
