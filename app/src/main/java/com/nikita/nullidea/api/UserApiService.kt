@@ -20,6 +20,9 @@ interface UserApiService {
     @POST("user/register")
     suspend fun signUp(@Body userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
 
+    @POST("user/verify")
+    suspend fun verifyEmail(@Body userVrtRequest: UserVrtRequest): BaseResponseModel<*>
+
 }
 
 data class UserRequestModel(
@@ -29,4 +32,10 @@ data class UserRequestModel(
     val authFirebaseToken: String? = null,
     @SerializedName("push_firebase_token")
     val pushFirebaseToken: String? = null
+)
+
+data class UserVrtRequest(
+    val email: String,
+    @SerializedName("verification_code")
+    val verificationCode: String? = null
 )

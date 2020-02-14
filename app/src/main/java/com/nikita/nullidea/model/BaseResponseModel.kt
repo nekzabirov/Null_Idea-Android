@@ -12,5 +12,5 @@ data class BaseResponseModel <T> (
     @SerializedName("success")
     val isSuccess: Boolean,
     val error: String,
-    val data: T
+    val data: T?
 )
