@@ -27,16 +27,18 @@ class EmailVerificationFragment : MyFragment() {
         arguments?.getString(KeyHelper.userEmail, null)!!
     }*/
 
+    private val resendTime = 120
+
     private val userEmail = "test@test.com"
 
-    private val bestTimer = BestTimer(120).apply {
+    private val bestTimer = BestTimer(resendTime).apply {
         onTime = {
             emailverti_resend_timer.text = it.toString()
         }
         onTimeDone = {
             emailverti_resend_timer.setTextColor(resources.getColor(R.color.colorPrimary))
             emailverti_resend_btn.setTextColor(resources.getColor(R.color.colorPrimary))
-            emailverti_resend_btn.isEnabled = false
+            emailverti_resend_btn.isEnabled = true
         }
     }
 
@@ -68,12 +70,23 @@ class EmailVerificationFragment : MyFragment() {
         viewModel.verificationCode(userEmail, emailverti_code.text)
     }
 
-    /*private val resendCode: (View) -> Unit = {
-        viewModel
-    }*/
+    private val resendCode: (View) -> Unit = {
+        viewModel.resendCode(email = userEmail)
+
+        emailverti_resend_btn.isEnabled = false
+
+        startTimer()
+    }
 
     private val codeInputListener: (Boolean) -> Unit = {
         emailverti_send_btn.isEnabled = it
+    }
+
+    private fun startTimer() {
+        bestTimer.start()
+        emailverti_resend_btn.setTextColor(resources.getColor(R.color.full_gray))
+        emailverti_resend_timer.setTextColor(resources.getColor(R.color.full_gray))
+        emailverti_resend_timer.text = (resendTime).toString()
     }
 
     override fun onCreateView(
@@ -86,10 +99,13 @@ class EmailVerificationFragment : MyFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         emailverti_send_btn.isEnabled = false
-        bestTimer.start()
+
         emailverti_code.onListener = codeInputListener
 
         emailverti_send_btn.setOnClickListener(checkCode)
+        emailverti_resend_btn.setOnClickListener(resendCode)
+
+        startTimer()
     }
 
     override fun onInternetError() {

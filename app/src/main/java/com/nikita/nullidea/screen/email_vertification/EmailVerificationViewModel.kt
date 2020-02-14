@@ -29,4 +29,10 @@ class EmailVerificationViewModel : MyViewModel() {
         }
     }
 
+    fun resendCode(email: String) {
+        GlobalScope.launch(Threads.ioDispatcher + errorHandler) {
+            userRepository.sendVerifyEmail(email)
+        }
+    }
+
 }
