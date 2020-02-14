@@ -9,6 +9,7 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="full_gray">#999999</color>
     <color name="friar_gray">#848483</color>
     <color name="friar_gray_bg_field">#4D848483</color>
     <color name="silver">#c8c8c8</color>

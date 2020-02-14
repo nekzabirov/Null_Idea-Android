@@ -22,5 +22,7 @@
     <string name="sign_in">sign in</string>
     <string name="user_exis">User exis</string>
     <string name="verify">VERIFY</string>
-    <string name="enter_the_6_digit_code_we_sent_you_via_email_to_proceed_check_your_spam_folder_as_well_usually_email_comes_in_2_10_min">Enter the 6 digit code we sent you\nvia email to proceed\nCheck your Spam folder as well,\nUsually email comes in 2–10 min</string>
+    <string name="enter_the_6_digit_code_we_sent_you_via_email_to_proceed_check_your_spam_folder_as_well_usually_email_comes_in_2_10_min">Enter the 6 digit code we sent you\nvia email to proceed\nCheck your <font color="#ffcb32">Spam</font> folder as well,\nUsually email comes in 2–10 min</string>
+    <string name="Didnt_receive_any_code">Didn\'t receive any code ?</string>
+    <string name="resend">RESEND</string>
 </resources>

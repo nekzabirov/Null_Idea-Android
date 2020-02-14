@@ -8,6 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".screen.email_vertification.EmailVerificationFragment">
@@ -32,7 +33,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_mail_open_big"
             android:layout_marginStart="@dimen/field_margin"
-            android:layout_marginEnd="@dimen/field_margin"/>
+            android:layout_marginEnd="@dimen/field_margin"
+            android:contentDescription="@string/verify" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,17 +47,21 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="@dimen/middle_field_margin"
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/middle_text"
-        android:textColor="@color/white"
-        android:lineSpacingExtra="1sp"
+        android:layout_marginTop="@dimen/middle_field_margin"
         android:gravity="center_horizontal"
-        android:text="@string/enter_the_6_digit_code_we_sent_you_via_email_to_proceed_check_your_spam_folder_as_well_usually_email_comes_in_2_10_min" />
+        android:lineSpacingExtra="1sp"
+        android:text="@string/enter_the_6_digit_code_we_sent_you_via_email_to_proceed_check_your_spam_folder_as_well_usually_email_comes_in_2_10_min"
+        android:textColor="@color/white"
+        android:textSize="@dimen/middle_text"
+        app:fontFamily="@font/ubuntu" />
 
     <com.nikita.codeedittext_view.CodeEditText
+        app:color="@color/colorPrimary"
+        app:textColor="@color/white"
+        app:maxInput="6"
         android:layout_marginTop="@dimen/middle_field_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -63,8 +69,40 @@
     <com.nikita.nullidea.ui.MyBtnProgress
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="@dimen/big_field_margin"
-        android:layout_marginEnd="74dp" />
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginTop="@dimen/big_field_margin"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/full_gray"
+            android:textSize="12sp"
+            tools:text="@string/Didnt_receive_any_code" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:insetLeft="-25dp"
+            android:text="@string/resend"
+            android:textColor="@color/full_gray" />
+
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/full_gray"
+        android:textSize="@dimen/middle_text"
+        app:fontFamily="@font/ubuntu_medium"
+        tools:text="120" />
 
 </LinearLayout>
