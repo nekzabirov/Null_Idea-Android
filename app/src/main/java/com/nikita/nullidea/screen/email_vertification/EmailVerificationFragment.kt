@@ -8,7 +8,6 @@ package com.nikita.nullidea.screen.email_vertification
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import com.google.android.material.snackbar.Snackbar
 
 import com.nikita.nullidea.R
 import com.nikita.nullidea.unit.BestTimer
-import com.nikita.nullidea.unit.KeyHelper
 import com.nikita.nullidea.unit.MyFragment
 import kotlinx.android.synthetic.main.email_vertification_fragment.*
 
@@ -67,7 +65,7 @@ class EmailVerificationFragment : MyFragment() {
         emailverti_code.color = resources.getColor(R.color.colorPrimary)
         //emailverti_code.postInvalidate()
 
-        viewModel.veritificateCode(userEmail, emailverti_code.text)
+        viewModel.verificationCode(userEmail, emailverti_code.text)
     }
 
     /*private val resendCode: (View) -> Unit = {

@@ -20,7 +20,7 @@ class EmailVerificationViewModel : MyViewModel() {
 
     val onStatus = MutableLiveData<Boolean?>()
 
-    fun veritificateCode(email: String, code: String) {
+    fun verificationCode(email: String, code: String) {
         GlobalScope.launch(Threads.ioDispatcher + errorHandler) {
             val checkVerifyEmail =
                 userRepository.checkVerifyEmail(email, code)
