@@ -39,7 +39,7 @@ class ApiFactory {
                         "${PreferenceTools.accessToken().tokenType} " +
                                 PreferenceTools.accessToken().accessToken
                     )
-                    .method(original.method(), original.body())
+                    .method(original.method, original.body)
 
                 val request = requestBuilder
                     .cacheControl(CacheControl.Builder().noCache().build())

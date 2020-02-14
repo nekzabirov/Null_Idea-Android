@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_login"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/emailVerificationFragment">
 
     <fragment
         android:id="@+id/signInFragment"
@@ -21,5 +21,14 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.nikita.nullidea.screen.sign_up.SignUpFragment"
-        android:label="SignUpFragment" />
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_emailVerificationFragment"
+            app:destination="@id/emailVerificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailVerificationFragment"
+        android:name="com.nikita.nullidea.screen.email_vertification.EmailVerificationFragment"
+        android:label="email_vertification_fragment"
+        tools:layout="@layout/email_vertification_fragment" />
 </navigation>

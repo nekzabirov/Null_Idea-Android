@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020.
+  ~ Nkita Knyazevkiy
+  ~ UA
+  -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".screen.email_vertification.EmailVerificationFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/verify"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/btn_txt" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_mail_open_big"
+            android:layout_marginStart="@dimen/field_margin"
+            android:layout_marginEnd="@dimen/field_margin"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/email"
+            android:textAllCaps="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/btn_txt" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="@dimen/middle_field_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/middle_text"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="1sp"
+        android:gravity="center_horizontal"
+        android:text="@string/enter_the_6_digit_code_we_sent_you_via_email_to_proceed_check_your_spam_folder_as_well_usually_email_comes_in_2_10_min" />
+
+    <com.nikita.codeedittext_view.CodeEditText
+        android:layout_marginTop="@dimen/middle_field_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.nikita.nullidea.ui.MyBtnProgress
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="@dimen/big_field_margin"
+        android:layout_marginEnd="74dp" />
+
+</LinearLayout>
