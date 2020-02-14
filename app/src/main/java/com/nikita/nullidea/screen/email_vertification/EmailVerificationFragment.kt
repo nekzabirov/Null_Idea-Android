@@ -11,12 +11,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 
 import com.nikita.nullidea.R
+import com.nikita.nullidea.TAG
 import com.nikita.nullidea.unit.BestTimer
 import com.nikita.nullidea.unit.MyFragment
+import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.android.synthetic.main.email_vertification_fragment.*
 
 class EmailVerificationFragment : MyFragment() {
@@ -25,6 +28,10 @@ class EmailVerificationFragment : MyFragment() {
 
     private val userEmail: String by lazy {
         arguments?.getString(getString(R.string.user_email_key), null)!!
+    }
+
+    private val userPassword: String by lazy {
+        arguments?.getString(getString(R.string.user_password_key), null)!!
     }
 
     private val resendTime = 120
@@ -44,7 +51,7 @@ class EmailVerificationFragment : MyFragment() {
         emailverti_send_btn.closeProgress()
         status?.let {
             if (it) {
-                //TODO(Open next scree)
+                onSuccess()
             } else {
                 /*emailverti_code.color = resources.getColor(R.color.error_prime)
                 emailverti_code.postInvalidate()*/
@@ -53,7 +60,14 @@ class EmailVerificationFragment : MyFragment() {
         }
     }
 
+    private fun onSuccess() {
+        MyLog.d(TAG, "onSuccess")
+        //TODO(Open main scree)
+        Toast.makeText(this.context, "onSuccess",Toast.LENGTH_SHORT).show()
+    }
+
     private fun showWrongCodeMsg() {
+        MyLog.e(TAG, "onWrong code")
         Snackbar.make(emailverti_code, R.string.wrong_code, Snackbar.LENGTH_SHORT).apply {
             setBackgroundTint(resources.getColor(R.color.error_prime))
         }.show()
@@ -65,7 +79,9 @@ class EmailVerificationFragment : MyFragment() {
         emailverti_code.color = resources.getColor(R.color.colorPrimary)
         //emailverti_code.postInvalidate()
 
-        viewModel.verificationCode(userEmail, emailverti_code.text)
+        viewModel.verificationCode(userEmail, userPassword, emailverti_code.text)
+
+        MyLog.d(TAG, "onCheckCode clickced")
     }
 
     private val resendCode: (View) -> Unit = {
@@ -81,6 +97,7 @@ class EmailVerificationFragment : MyFragment() {
     }
 
     private fun startTimer() {
+        MyLog.d(TAG, "on start timer")
         bestTimer.start()
         emailverti_resend_btn.setTextColor(resources.getColor(R.color.full_gray))
         emailverti_resend_timer.setTextColor(resources.getColor(R.color.full_gray))
@@ -104,6 +121,8 @@ class EmailVerificationFragment : MyFragment() {
         emailverti_resend_btn.setOnClickListener(resendCode)
 
         startTimer()
+
+        emailverti_send_btn.setText(R.string.proceed)
     }
 
     override fun onInternetError() {
@@ -120,6 +139,11 @@ class EmailVerificationFragment : MyFragment() {
     override fun onDestroy() {
         super.onDestroy()
         bestTimer.stop()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        MyLog.d(TAG, "onStart")
     }
 
 }
