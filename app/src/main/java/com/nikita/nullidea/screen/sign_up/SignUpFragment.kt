@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.jakewharton.rxbinding.widget.RxTextView
 
@@ -50,20 +51,21 @@ class SignUpFragment : BaseLoginFragment() {
 
         initUI()
 
-        signin_login_btn.setOnClickListener {
-
-            signin_login_btn.openProgress()
-
-            viewModel.signUp(
-                signin_email.text.toString(),
-                signin_password.text.toString()
-            )
-
-        }
+        signin_login_btn.setOnClickListener(signUP)
 
         signin_signup_btn.setOnClickListener {
             activity?.onBackPressed()
         }
+
+    }
+
+    private val signUP: (View) -> Unit = {
+
+        signin_login_btn.openProgress()
+
+        viewModel.sendCode(
+            signin_email.text.toString()
+        )
 
     }
 
@@ -88,11 +90,23 @@ class SignUpFragment : BaseLoginFragment() {
 
         if(it) {
             MyLog.e(TAG, "success sign up/in")
-            //TODO(Open main screen)
-            Toast.makeText(this.context, "Success registered", Toast.LENGTH_LONG).show()
+            openVerifiScreen()
+
         }  else {
             signin_email_txtinputlayout.error = getString(R.string.user_exis)
         }
+    }
+
+    private fun openVerifiScreen() {
+        val args = Bundle().apply {
+            putString(this@SignUpFragment.getString(R.string.user_email_key), signin_email.text.toString())
+            putString(this@SignUpFragment.getString(R.string.user_password_key), signin_password.text.toString())
+        }
+        Navigation.findNavController(signin_login_btn)
+            .navigate(
+                R.id.action_signUpFragment_to_emailVerificationFragment,
+                args
+            )
     }
 
 

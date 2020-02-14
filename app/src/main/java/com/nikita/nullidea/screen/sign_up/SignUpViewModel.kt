@@ -21,11 +21,10 @@ class SignUpViewModel : LoginViewModel() {
 
     val successLiveData = successLogin
 
-    fun signUp(email: String, password: String) {
+    fun sendCode(email: String) {
         GlobalScope.launch(Threads.ioDispatcher + errorHandler) {
-            val responseModel = userRepository.signUp(email, password)
-
-            successLiveData.postValue(responseModel.isSuccess)
+            val verifyEmail = userRepository.sendVerifyEmail(email)
+            successLiveData.postValue(verifyEmail.isSuccess)
         }
     }
 

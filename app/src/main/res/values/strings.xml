@@ -5,6 +5,7 @@
 
     <!-- KEY HELPER -->
     <string name="user_email_key" translatable="false">USER_EMAIL</string>
+    <string name="user_password_key" translatable="false">USER_PASSWORD</string>
 
 
     <string name="app_name">Nullidea</string>
@@ -30,4 +31,5 @@
     <string name="resend">RESEND</string>
     <string name="_120">120</string>
     <string name="wrong_code">Wrong code</string>
+    <string name="proceed">proceed</string>
 </resources>
