@@ -12,6 +12,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:fitsSystemWindows="true"
+    android:animateLayoutChanges="true"
     tools:context=".screen.email_vertification.EmailVerificationFragment">
 
     <LinearLayout
@@ -60,52 +61,63 @@
         app:fontFamily="@font/ubuntu" />
 
     <com.nikita.codeedittext_view.CodeEditText
-        app:color="@color/colorPrimary"
-        app:textColor="@color/white"
-        app:maxInput="6"
-        android:layout_marginTop="@dimen/middle_field_margin"
+        android:id="@+id/emailverti_code"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/middle_field_margin"
+        app:color="@color/colorPrimary"
+        app:maxInput="6"
+        app:textColor="@color/white" />
 
     <com.nikita.nullidea.ui.MyBtnProgress
+        android:id="@+id/emailverti_send_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginTop="@dimen/big_field_margin"/>
+        android:layout_marginTop="@dimen/big_field_margin"
+        android:layout_marginEnd="64dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textColor="@color/full_gray"
-            android:textSize="12sp"
-            android:text="@string/Didnt_receive_any_code" />
+            android:orientation="horizontal">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/emailverti_resend_btn"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/Didnt_receive_any_code"
+                android:textColor="@color/full_gray"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/emailverti_resend_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:insetLeft="5dp"
+                android:text="@string/resend"
+                android:enabled="false"
+                android:textColor="@color/full_gray" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/emailverti_resend_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@android:color/transparent"
-            android:insetLeft="5dp"
-            android:text="@string/resend"
-            android:textColor="@color/full_gray" />
-
-
+            android:text="@string/_120"
+            android:textColor="@color/full_gray"
+            android:textSize="@dimen/middle_text"
+            app:fontFamily="@font/ubuntu_medium" />
     </LinearLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/emailverti_resend_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_120"
-        android:textColor="@color/full_gray"
-        android:textSize="@dimen/middle_text"
-        app:fontFamily="@font/ubuntu_medium" />
 
 </LinearLayout>

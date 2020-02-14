@@ -14,8 +14,10 @@ class BestTimer(private val timeSecond: Int) {
 
     var onTime: (Int) -> Unit = {}
 
+    private var timeJob: Job? = null
+
     fun start() {
-        GlobalScope.launch(Threads.ioDispatcher) {
+        timeJob = GlobalScope.launch(Threads.ioDispatcher) {
             for (time in 1..timeSecond) {
                 delay(1000)
                 withContext(Threads.mainDispatcher) {
@@ -26,6 +28,10 @@ class BestTimer(private val timeSecond: Int) {
                 onTimeDone.invoke()
             }
         }
+    }
+
+    fun stop() {
+        timeJob?.cancel()
     }
 
 }

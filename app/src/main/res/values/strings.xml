@@ -26,4 +26,5 @@
     <string name="Didnt_receive_any_code">Didn\'t receive any code ?</string>
     <string name="resend">RESEND</string>
     <string name="_120">120</string>
+    <string name="wrong_code">Wrong code</string>
 </resources>
