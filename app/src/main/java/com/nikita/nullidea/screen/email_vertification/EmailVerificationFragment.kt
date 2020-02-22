@@ -53,8 +53,8 @@ class EmailVerificationFragment : MyFragment() {
             if (it) {
                 onSuccess()
             } else {
-                /*emailverti_code.color = resources.getColor(R.color.error_prime)
-                emailverti_code.postInvalidate()*/
+                emailverti_code.color = resources.getColor(R.color.error_prime)
+                emailverti_code.postInvalidate()
                 showWrongCodeMsg()
             }
         }
@@ -93,6 +93,7 @@ class EmailVerificationFragment : MyFragment() {
     }
 
     private val codeInputListener: (Boolean) -> Unit = {
+        //emailverti_code.color = resources.getColor(R.color.colorPrimary)
         emailverti_send_btn.isEnabled = it
     }
 
