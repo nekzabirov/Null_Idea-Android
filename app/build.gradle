@@ -26,7 +26,7 @@ android {
         applicationId "com.nikita.nullidea"
         minSdkVersion 22
         targetSdkVersion 29
-        versionCode 7
+        versionCode 8
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,7 +37,7 @@ android {
         }
         debug {
             firebaseAppDistribution {
-                releaseNotes = "Email verify screen"
+                releaseNotes = "Changed api url"
                 groups = "internal"
             }
         }

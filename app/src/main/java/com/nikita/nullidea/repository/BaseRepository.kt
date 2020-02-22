@@ -8,6 +8,6 @@ package com.nikita.nullidea.repository
 
 abstract class BaseRepository {
 
-    open val apiUrl = "https://nullidea.herokuapp.com/"
+    open val apiUrl = "https://nullidea.herokuapp.com/v1"
 
 }

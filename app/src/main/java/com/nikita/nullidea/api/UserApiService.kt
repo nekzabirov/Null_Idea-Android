@@ -9,19 +9,21 @@ package com.nikita.nullidea.api
 import com.google.gson.annotations.SerializedName
 import com.nikita.nullidea.db.UserEntity
 import com.nikita.nullidea.model.BaseResponseModel
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserApiService {
 
-    @POST("user/login")
-    suspend fun signIn(@Body userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
+    @GET("users")
+    suspend fun signIn(@QueryMap userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
 
-    @POST("user/register")
+    @POST("users")
     suspend fun signUp(@Body userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
 
-    @POST("user/verify")
-    suspend fun verifyEmail(@Body userVrtRequest: UserVrtRequest): BaseResponseModel<*>
+    @POST("users/verify")
+    suspend fun sendVerifyEmail(@Body userRequestModel: UserRequestModel): BaseResponseModel<*>
+
+    @GET("users/verify")
+    suspend fun verifyEmail(@Query("email") email: String, @Query("code") code: String): BaseResponseModel<*>
 
 }
 
@@ -36,6 +38,6 @@ data class UserRequestModel(
 
 data class UserVrtRequest(
     val email: String,
-    @SerializedName("verification_code")
+    @SerializedName("code")
     val verificationCode: String? = null
 )

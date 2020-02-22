@@ -76,11 +76,11 @@ class UserRepository: BaseRepository() {
     }
 
     suspend fun sendVerifyEmail(email: String): BaseResponseModel<*> {
-        return userService.verifyEmail(UserVrtRequest(email = email))
+        return userService.sendVerifyEmail(UserRequestModel(email = email))
     }
 
     suspend fun checkVerifyEmail(email: String, code: String): BaseResponseModel<*> {
-        return userService.verifyEmail(UserVrtRequest(email, code))
+        return userService.verifyEmail(email, code)
     }
 
 }
