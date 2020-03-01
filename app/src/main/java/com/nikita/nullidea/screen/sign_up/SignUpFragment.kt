@@ -8,28 +8,25 @@ package com.nikita.nullidea.screen.sign_up
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.jakewharton.rxbinding.widget.RxTextView
+import com.google.android.material.snackbar.Snackbar
 
 import com.nikita.nullidea.R
 import com.nikita.nullidea.TAG
 import com.nikita.nullidea.screen.base_login.BaseLoginFragment
-import com.nikita.nullidea.unit.MyFragment
-import com.nikita.nullidea.unit.setIconStates
+import com.nikita.nullidea.screen.email_vertification.EmailVerificationViewModel
 import com.nikita.nullidea.unit.tool.MyLog
 import kotlinx.android.synthetic.main.sign_in_fragment.*
-import rx.Observable
 
 class SignUpFragment : BaseLoginFragment() {
 
     private lateinit var viewModel: SignUpViewModel
+    private lateinit var emailVerificationViewModel: EmailVerificationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +40,7 @@ class SignUpFragment : BaseLoginFragment() {
         signin_forgotpassword_btn.isEnabled = false
         signin_forgotpassword_btn.visibility = View.INVISIBLE
         signin_signup_btn.setText(R.string.sign_in)
-        signin_login_btn.setText(R.string.sign_up)
+        signin_login_btn.setText(R.string.next)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,22 +48,23 @@ class SignUpFragment : BaseLoginFragment() {
 
         initUI()
 
-        signin_login_btn.setOnClickListener(signUP)
+        signin_login_btn.setOnClickListener(onNext)
 
         signin_signup_btn.setOnClickListener {
             activity?.onBackPressed()
         }
 
+        signin_password_txtinputlayout.visibility = View.GONE
+        signin_password.setText("12345678")
+
     }
 
-    private val signUP: (View) -> Unit = {
+    private val onNext: (View) -> Unit = {
+        openVerifiScreen()
+    }
 
-        signin_login_btn.openProgress()
-
-        viewModel.sendCode(
-            signin_email.text.toString()
-        )
-
+    private val onSignUp: (View) -> Unit = {
+        viewModel.signUp(signin_email.text.toString(), signin_password.text.toString())
     }
 
     override fun onSocialLogined(account: GoogleSignInAccount) {
@@ -76,10 +74,13 @@ class SignUpFragment : BaseLoginFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
+        emailVerificationViewModel = ViewModelProviders.of(requireActivity()).get(EmailVerificationViewModel::class.java)
 
         viewModel.internetErrorLiveData.observe(this.viewLifecycleOwner, internetError)
 
         viewModel.successLiveData.observe(this.viewLifecycleOwner, successObs)
+
+        emailVerificationViewModel.isEmailApproveLive.observe(viewLifecycleOwner, onEmailApproveObs)
     }
 
     private val successObs = Observer<Boolean?> {
@@ -88,19 +89,23 @@ class SignUpFragment : BaseLoginFragment() {
 
         signin_login_btn.closeProgress()
 
-        if(it) {
-            MyLog.e(TAG, "success sign up/in")
-            openVerifiScreen()
+        if (it) {
+            Snackbar.make(view!!, "OK", Snackbar.LENGTH_SHORT).show()
+        }
+    }
 
-        }  else {
-            signin_email_txtinputlayout.error = getString(R.string.user_exis)
+    private val onEmailApproveObs = Observer<Boolean> {
+        if (it) {
+            signin_password_txtinputlayout.visibility = View.VISIBLE
+            signin_login_btn.setOnClickListener(onSignUp)
+            signin_login_btn.setText(R.string.sign_up)
+            signin_password.text = null
         }
     }
 
     private fun openVerifiScreen() {
         val args = Bundle().apply {
             putString(this@SignUpFragment.getString(R.string.user_email_key), signin_email.text.toString())
-            putString(this@SignUpFragment.getString(R.string.user_password_key), signin_password.text.toString())
         }
         Navigation.findNavController(signin_login_btn)
             .navigate(

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -60,7 +61,7 @@ class SignInFragment : BaseLoginFragment() {
 
         signin_login_btn.setOnClickListener {
 
-            signin_login_btn.openProgress()
+            //signin_login_btn.openProgress()
 
             viewModel.signIn(
                 signin_email.text.toString(),
@@ -69,10 +70,15 @@ class SignInFragment : BaseLoginFragment() {
 
         }
 
+        signin_login_btn.setText(R.string.sign_in)
+
         signin_signup_btn.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
+        signin_forgotpassword_btn.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_resetPasswordFragment)
+        }
     }
 
     override fun onSocialLogined(account: GoogleSignInAccount) {

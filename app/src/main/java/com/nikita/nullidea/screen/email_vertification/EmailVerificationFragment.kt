@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 
 import com.nikita.nullidea.R
@@ -28,10 +29,6 @@ class EmailVerificationFragment : MyFragment() {
 
     private val userEmail: String by lazy {
         arguments?.getString(getString(R.string.user_email_key), null)!!
-    }
-
-    private val userPassword: String by lazy {
-        arguments?.getString(getString(R.string.user_password_key), null)!!
     }
 
     private val resendTime = 120
@@ -61,9 +58,7 @@ class EmailVerificationFragment : MyFragment() {
     }
 
     private fun onSuccess() {
-        MyLog.d(TAG, "onSuccess")
-        //TODO(Open main scree)
-        Toast.makeText(this.context, "onSuccess",Toast.LENGTH_SHORT).show()
+        findNavController().navigateUp()
     }
 
     private fun showWrongCodeMsg() {
@@ -74,12 +69,12 @@ class EmailVerificationFragment : MyFragment() {
     }
 
     private val checkCode: (View) -> Unit = {
-        emailverti_send_btn.openProgress()
+        //emailverti_send_btn.openProgress()
 
         emailverti_code.color = resources.getColor(R.color.colorPrimary)
         //emailverti_code.postInvalidate()
 
-        viewModel.verificationCode(userEmail, userPassword, emailverti_code.text)
+        viewModel.verificationCode(userEmail, emailverti_code.text)
 
         MyLog.d(TAG, "onCheckCode clickced")
     }
@@ -124,6 +119,7 @@ class EmailVerificationFragment : MyFragment() {
         startTimer()
 
         emailverti_send_btn.setText(R.string.proceed)
+
     }
 
     override fun onInternetError() {
@@ -133,8 +129,9 @@ class EmailVerificationFragment : MyFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(EmailVerificationViewModel::class.java)
+        viewModel = ViewModelProviders.of(requireActivity()).get(EmailVerificationViewModel::class.java)
         viewModel.onStatus.observe(this.viewLifecycleOwner, statusObserver)
+        viewModel.resendCode(email = userEmail)
     }
 
     override fun onDestroy() {

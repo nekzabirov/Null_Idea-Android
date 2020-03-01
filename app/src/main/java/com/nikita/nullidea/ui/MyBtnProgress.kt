@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import androidx.annotation.StringRes
 import com.google.android.material.button.MaterialButton
 import com.nikita.nullidea.R
+import kotlinx.coroutines.*
 
 class MyBtnProgress @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -32,13 +33,29 @@ class MyBtnProgress @JvmOverloads constructor(
 
         btn = findViewById(R.id.mybtnprogress_btn)
         pb = findViewById(R.id.mybtnprogress_progress)
+
+        val attributes = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.MyBtnProgress,
+            defStyleAttr,
+            0
+        )
+
+        setText(attributes.getString(R.styleable.MyBtnProgress_text))
+        isEnabled = attributes.getBoolean(R.styleable.MyBtnProgress_enabled, true)
     }
 
-    private val duration = 500.toLong()
+    private val duration = 300.toLong()
 
     override fun setOnClickListener(l: OnClickListener?) {
         //super.setOnClickListener(l)
-        btn.setOnClickListener(l)
+        btn.setOnClickListener {
+            GlobalScope.launch(Dispatchers.Main) {
+                openProgress()
+                withContext(Dispatchers.IO) {delay(duration + 100)}
+                l?.onClick(btn)
+            }
+        }
     }
 
     override fun setEnabled(enabled: Boolean) {
@@ -58,6 +75,7 @@ class MyBtnProgress @JvmOverloads constructor(
             .scaleX(1f)
             .alpha(1f)
             .start()
+
     }
 
     fun closeProgress() {
@@ -74,7 +92,7 @@ class MyBtnProgress @JvmOverloads constructor(
             .start()
     }
 
-    fun setText(text: String) {
+    fun setText(text: String?) {
         btn.text = text
     }
 

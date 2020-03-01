@@ -29,6 +29,8 @@ abstract class LoginViewModel: MyViewModel() {
 
     open val userEntityLive = MutableLiveData<UserEntity?>()
 
+    open val isEmailApproveLive = MutableLiveData<Boolean>(false)
+
     private val auth = FirebaseAuth.getInstance()
 
     open fun firebaseAuthWithGoogle(acct: GoogleSignInAccount, activity: Activity) {

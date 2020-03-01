@@ -68,7 +68,7 @@ abstract class BaseLoginFragment : MyFragment() {
 
             MyLog.d(TAG, "start sign in via google")
 
-            signin_login_btn.openProgress()
+            //signin_login_btn.openProgress()
 
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, SIGN_IN_GOOGLE)

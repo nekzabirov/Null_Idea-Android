@@ -13,8 +13,11 @@ import retrofit2.http.*
 
 interface UserApiService {
 
-    @GET("users")
-    suspend fun signIn(@QueryMap userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
+    @GET("users/")
+    suspend fun signIn(@Query("email") email: String, @Query("password") password: String): BaseResponseModel<UserEntity>
+
+    @GET("users/firebase/")
+    suspend fun signIn(@Query("auth_firebase_token") firebaseUUID: String): BaseResponseModel<UserEntity>
 
     @POST("users")
     suspend fun signUp(@Body userRequestModel: UserRequestModel): BaseResponseModel<UserEntity>
@@ -22,8 +25,11 @@ interface UserApiService {
     @POST("users/verify")
     suspend fun sendVerifyEmail(@Body userRequestModel: UserRequestModel): BaseResponseModel<*>
 
-    @GET("users/verify")
+    @GET("users/verify/")
     suspend fun verifyEmail(@Query("email") email: String, @Query("code") code: String): BaseResponseModel<*>
+
+    @GET("users/")
+    suspend fun isEmailExits(@Query("email") email: String): BaseResponseModel<*>
 
 }
 

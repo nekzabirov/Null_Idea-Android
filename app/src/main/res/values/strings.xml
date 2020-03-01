@@ -32,4 +32,7 @@
     <string name="_120">120</string>
     <string name="wrong_code">Wrong code</string>
     <string name="proceed">proceed</string>
+    <string name="next">Next</string>
+    <string name="change_password">CHANGE PASSWORD</string>
+    <string name="email_not_exits">Email is not exits</string>
 </resources>

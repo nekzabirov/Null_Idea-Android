@@ -16,10 +16,7 @@ class UserRepository: BaseRepository() {
 
     suspend fun signIn(email: String, password: String): BaseResponseModel<UserEntity> {
         val responseModel = userService.signIn(
-            UserRequestModel(
-                email = email,
-                password = password,
-                pushFirebaseToken = PreferenceTools.tokenFirebase())
+            email, password
         )
 
         if (responseModel.isSuccess && responseModel.data != null) {
@@ -46,10 +43,7 @@ class UserRepository: BaseRepository() {
 
     suspend fun signInFirebase(uuid: String): BaseResponseModel<UserEntity> {
         val responseModel = userService.signIn(
-            UserRequestModel(
-                authFirebaseToken = uuid,
-                pushFirebaseToken = PreferenceTools.tokenFirebase()
-            )
+            uuid
         )
 
         if (responseModel.isSuccess && responseModel.data != null) {
@@ -81,6 +75,10 @@ class UserRepository: BaseRepository() {
 
     suspend fun checkVerifyEmail(email: String, code: String): BaseResponseModel<*> {
         return userService.verifyEmail(email, code)
+    }
+
+    suspend fun isEmailExits(email: String): Boolean {
+        return userService.isEmailExits(email).isSuccess
     }
 
 }

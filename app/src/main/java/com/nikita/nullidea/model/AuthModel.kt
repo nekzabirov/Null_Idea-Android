@@ -10,9 +10,9 @@ import com.google.gson.annotations.SerializedName
 
 data class AuthModel(
     @SerializedName("client_id")
-    val clientId: String = "PwWOqCFYyrjKt091lL0vzjGSQDUUkIxw",
+    val clientId: String = "2xsVxikXVWGYdtVM8zy37yuxlnJ2C3e9",
     @SerializedName("client_secret")
-    val clientSecret: String = "rGytL6kKhBZFhtSDdH_aWnLRz1euqpQ1SDL6o2CacwKGCaqx8qI40Q_s_3UmC9JT",
+    val clientSecret: String = "UrgWDRChGIqShy4qntvI9MXCEeImYEXdly9BdWtvYxyBfVET0LDw7s1jXToXDQqL",
     val audience: String = "https://nullidea.herokuapp.com/",
     @SerializedName("grant_type")
     val grantType: String = "client_credentials"
