@@ -58,7 +58,7 @@ class EmailVerificationFragment : MyFragment() {
     }
 
     private fun onSuccess() {
-        findNavController().navigateUp()
+        activity?.onBackPressed()
     }
 
     private fun showWrongCodeMsg() {

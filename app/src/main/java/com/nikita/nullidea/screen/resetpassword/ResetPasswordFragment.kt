@@ -12,13 +12,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
+import com.jakewharton.rxbinding.widget.RxTextView
 import com.nikita.nullidea.R
 import com.nikita.nullidea.databinding.ResetPasswordFragmentBinding
 import com.nikita.nullidea.screen.email_vertification.EmailVerificationViewModel
+import com.nikita.nullidea.unit.MyFragment
+import rx.Observable
 
-class ResetPasswordFragment : Fragment() {
+class ResetPasswordFragment : MyFragment() {
 
     private lateinit var mViewModel: ResetPasswordViewModel
     private lateinit var emailVerificationViewModel: EmailVerificationViewModel
@@ -39,25 +44,69 @@ class ResetPasswordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.onCheckEmail = onCheckEmail
+        binding.onResetPassword = onChangePassword
+
+        binding.resetpasswordEmailField.addTextChangedListener {
+            binding.isBtnEnable = android.util.Patterns.EMAIL_ADDRESS.matcher(it.toString()).matches()
+        }
     }
 
     private val onCheckEmail = View.OnClickListener {
         mViewModel.checkEmail(binding.resetpasswordEmailField.text.toString())
     }
 
+    private val onChangePassword = View.OnClickListener {
+        mViewModel.satNewPassword(
+            binding.resetpasswordEmailField.text.toString(),
+            binding.resetpasswordPasswordFiled.text.toString()
+        )
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(this).get(ResetPasswordViewModel::class.java)
         emailVerificationViewModel = ViewModelProviders.of(this.requireActivity()).get(EmailVerificationViewModel::class.java)
+    }
 
-        mViewModel.isEmailExitsLive.observe(viewLifecycleOwner, isEmailExitsObs)
+    override fun onStart() {
+        super.onStart()
+
+        mViewModel.onSuccessLiveData.observe(viewLifecycleOwner, onSuccessChangedObservable)
+
+        mViewModel.internetErrorLiveData.observe(viewLifecycleOwner, Observer {
+            binding.resetpasswordBtn.closeProgress()
+            Snackbar.make(view!!, R.string.lost_connection, Snackbar.LENGTH_SHORT).show()
+        })
+
         emailVerificationViewModel.isEmailApproveLive.observe(viewLifecycleOwner, Observer {
             binding.isEmailApprove = it
+            binding.isBtnEnable = false
+
+            val password = RxTextView.textChanges(binding.resetpasswordPasswordFiled)
+            val passwordReply = RxTextView.textChanges(binding.resetpasswordPasswordreplyFiled)
+
+            Observable.merge(
+                password,
+                passwordReply
+            )
+                .map {
+                    return@map binding.resetpasswordPasswordFiled.text.toString().length >= 8
+                            && binding.resetpasswordPasswordFiled.text.toString() == binding.resetpasswordPasswordreplyFiled.text.toString()
+                }
+                .subscribe {enabled ->
+                    binding.isBtnEnable = enabled
+                }
+
         })
+
+        mViewModel.isEmailExitsLive.observe(viewLifecycleOwner, isEmailExitsObs)
     }
 
     private val isEmailExitsObs = Observer<Boolean?> {
         if (it == null)
+            return@Observer
+
+        if (binding.isEmailApprove == true)
             return@Observer
 
         binding.resetpasswordBtn.closeProgress()
@@ -73,5 +122,19 @@ class ResetPasswordFragment : Fragment() {
             binding.resetpasswordEmailInputlayout.error = getString(R.string.email_not_exits)
 
     }
+    private val onSuccessChangedObservable = Observer<Boolean?> {
+        if (it == null)
+            return@Observer
+
+        binding.resetpasswordBtn.closeProgress()
+
+        if (it) {
+            Snackbar.make(view!!, "OK", Snackbar.LENGTH_SHORT).show()
+            //TODO(Move to login scfeen)
+        } else {
+            binding.resetpasswordEmailInputlayout.error = ""
+        }
+    }
+
 
 }

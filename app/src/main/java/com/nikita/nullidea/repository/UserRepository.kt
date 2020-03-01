@@ -81,4 +81,8 @@ class UserRepository: BaseRepository() {
         return userService.isEmailExits(email).isSuccess
     }
 
+    suspend fun resetPassword(email: String, password: String): Boolean {
+        return userService.resetPassword(UserRequestModel(email = email, password = password)).isSuccess
+    }
+
 }

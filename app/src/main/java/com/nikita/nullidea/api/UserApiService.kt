@@ -31,6 +31,9 @@ interface UserApiService {
     @GET("users/")
     suspend fun isEmailExits(@Query("email") email: String): BaseResponseModel<*>
 
+    @PATCH("users")
+    suspend fun resetPassword(@Body userRequestModel: UserRequestModel): BaseResponseModel<*>
+
 }
 
 data class UserRequestModel(

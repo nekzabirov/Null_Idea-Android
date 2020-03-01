@@ -37,6 +37,7 @@ object Threads {
                 onError.onInternet()
             } else {
                 MyLog.e(TAG, "on unresolved error: $error ${error.localizedMessage}")
+                onError.onInternet()
             }
 
         }
