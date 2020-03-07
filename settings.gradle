@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':codeedittext_view'
 rootProject.name='Nullidea'

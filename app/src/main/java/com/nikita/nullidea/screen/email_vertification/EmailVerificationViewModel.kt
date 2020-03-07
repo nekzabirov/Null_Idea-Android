@@ -21,6 +21,10 @@ class EmailVerificationViewModel : LoginViewModel() {
 
     val onStatus = MutableLiveData<Boolean?>()
 
+    fun clear() {
+        onStatus.postValue(null)
+    }
+
     fun verificationCode(email: String, code: String) {
         MyLog.d(TAG, "onVerificationCode")
         GlobalScope.launch(Threads.ioDispatcher + errorHandler) {

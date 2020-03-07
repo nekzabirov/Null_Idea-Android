@@ -11,7 +11,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.material.snackbar.Snackbar
@@ -25,8 +27,8 @@ import kotlinx.android.synthetic.main.sign_in_fragment.*
 
 class SignUpFragment : BaseLoginFragment() {
 
-    private lateinit var viewModel: SignUpViewModel
-    private lateinit var emailVerificationViewModel: EmailVerificationViewModel
+    private lateinit var viewModel: SignUpViewModel /*by viewModels<SignUpViewModel> {  ViewModelProvider.NewInstanceFactory()}*/
+    private val emailVerificationViewModel: EmailVerificationViewModel by lazy { ViewModelProviders.of(requireActivity()).get(EmailVerificationViewModel::class.java) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,9 +56,6 @@ class SignUpFragment : BaseLoginFragment() {
             activity?.onBackPressed()
         }
 
-        signin_password_txtinputlayout.visibility = View.GONE
-        signin_password.setText("12345678")
-
     }
 
     private val onNext: (View) -> Unit = {
@@ -74,13 +73,22 @@ class SignUpFragment : BaseLoginFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
-        emailVerificationViewModel = ViewModelProviders.of(requireActivity()).get(EmailVerificationViewModel::class.java)
 
         viewModel.internetErrorLiveData.observe(this.viewLifecycleOwner, internetError)
 
         viewModel.successLiveData.observe(this.viewLifecycleOwner, successObs)
+    }
 
-        emailVerificationViewModel.isEmailApproveLive.observe(viewLifecycleOwner, onEmailApproveObs)
+    override fun onStart() {
+        super.onStart()
+        if (isNeedToApproveEmail) {
+            emailVerificationViewModel.isEmailApproveLive.observe(
+                viewLifecycleOwner,
+                onEmailApproveObs
+            )
+            signin_password_txtinputlayout.visibility = View.GONE
+            signin_password.setText("12345678")
+        }
     }
 
     private val successObs = Observer<Boolean?> {
@@ -94,12 +102,18 @@ class SignUpFragment : BaseLoginFragment() {
         }
     }
 
+    private var isNeedToApproveEmail = true
+
     private val onEmailApproveObs = Observer<Boolean> {
         if (it) {
+            isNeedToApproveEmail = false
+            signin_email.isEnabled = false
             signin_password_txtinputlayout.visibility = View.VISIBLE
             signin_login_btn.setOnClickListener(onSignUp)
             signin_login_btn.setText(R.string.sign_up)
             signin_password.text = null
+
+            emailVerificationViewModel.clear()
         }
     }
 
